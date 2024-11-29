@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Generator</title>
+    <link rel="icon" href="./images/logo.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="bb">
+      <button onclick="handleClick()">Generate OTP</button>
+      <div id="main"></div>
+    </div>
+    <script>
+      document.body.style.margin = "0";
+      document.body.style.padding = "0";
+      document.body.style.fontFamily = "Arial, sans-serif";
+      document.body.style.transition = "background-color 0.3s ease";
+
+      const bb = document.querySelector(".bb");
+      bb.style.display = "flex";
+      bb.style.flexDirection = "column";
+      bb.style.alignItems = "center";
+      bb.style.marginTop = "60px";
+      bb.style.borderRadius = "30px";
+
+      const button = document.querySelector("button");
+      button.style.borderRadius = "40px";
+      button.style.padding = "10px";
+      button.style.boxShadow = "4px 4px 8px aqua";
+      button.style.cursor = "pointer";
+      button.style.transition = "transform 0.2s ease";
+
+      button.addEventListener("mouseenter", function () {
+        this.style.transform = "scale(1.2)";
+      });
+
+      button.addEventListener("mouseleave", function () {
+        this.style.transform = "scale(1)";
+      });
+
+      const main = document.getElementById("main");
+      main.style.marginTop = "20px";
+      main.style.fontSize = "1.5em";
+      main.style.fontWeight = "bold";
+
+      function generateOTP() {
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById("main").innerHTML = `Your OTP is ${otp}`;
+      }
+
+      function generateColor() {
+        const characters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += characters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function changeBackgroundColor() {
+        document.body.style.backgroundColor = generateColor();
+      }
+
+      function handleClick() {
+        generateOTP();
+        changeBackgroundColor();
+      }
+      document.body.style.backgroundColor = "#FFFFFF";
+    </script>
+  </body>
+</html>
